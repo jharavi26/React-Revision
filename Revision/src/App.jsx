@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import './App.css'
-import List from './components/List'
+import './App.css';
+import Tab from './components/tab';
+
+
 
 
 function App() {
@@ -9,7 +11,8 @@ function App() {
   return (
     <>
       <div>
-        <List />
+        <Tab />
+       
         
      
        
