@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import Mode from './components/Mode'
+import List from './components/List'
+
 
 function App() {
  
@@ -8,7 +9,8 @@ function App() {
   return (
     <>
       <div>
-        <Mode />
+        <List />
+        
      
        
       </div>

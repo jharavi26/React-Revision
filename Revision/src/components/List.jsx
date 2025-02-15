@@ -1,22 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function List() {
   const [text, setText] = useState("");
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState(()=>{
+    const newTodo = sessionStorage.getItem("todo");
+    return newTodo ? JSON.parse(newTodo) : [];
+  });
+
 
   const handleChange = (e)=>{
-    setText(e.target.value);
-    
-    
+    setText(e.target.value);  
   }
+
+  useEffect(()=>{
+    sessionStorage.setItem("todo", JSON.stringify(todo)); 
+  },[todo])
 
   const handleClick  = ()=>{
     setTodo((prev)=>[...prev, text]) 
     setText("")
   }
 
-  const handleDelete = (index)=>{
-    const newData = todo.filter((item, i) => i !== index );
+  const handleDelete = (id)=>{
+    const newData = todo.filter((item, index) => index !== id );
     setTodo(newData);
   }
 
@@ -25,7 +31,7 @@ function List() {
     <div className='app'>
       <div className='container'></div>
       <input type = "text" placeholder='Enter the todo' value={text} onChange={handleChange}/>
-      <button onClick={handleClick}>Add</button>
+      <button onClick={handleClick} style={{backgroundColor:"green", marginLeft:"20px"}}>Add</button>
 
       <ol>
         {
