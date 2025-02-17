@@ -1,17 +1,19 @@
-import { useState } from 'react'
+import { useReducer, useState } from 'react'
 import './App.css';
-import Tab from './components/tab';
+import Cart from './components/Cart';
 
 
 
 
 function App() {
+
+  
  
 
   return (
     <>
       <div>
-        <Tab />
+        <Cart />
        
         
      
