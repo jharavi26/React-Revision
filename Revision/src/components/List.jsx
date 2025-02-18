@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 function List() {
   const [text, setText] = useState("");
+  const [check , setCheck] = useState(false);
   const [todo, setTodo] = useState(()=>{
     const newTodo = sessionStorage.getItem("todo");
     return newTodo ? JSON.parse(newTodo) : [];
@@ -26,6 +27,10 @@ function List() {
     setTodo(newData);
   }
 
+  const handleCheck = ()=>{
+    setCheck(!check);
+  }
+
 
 
 
@@ -39,8 +44,9 @@ function List() {
         {
           (todo.length >= 0 && 
           todo.map((item, index)=>{
-            return <li key={index}>{item}
-            <button style={{marginLeft :"100px", backgroundColor:"red"}} onClick={()=>handleDelete(index)}>Delete</button></li>
+            return <li key={index} style={{textDecoration : check ? "line-through"  : ""}}>{item}
+            <button style={{marginLeft :"100px", backgroundColor:"red"}} onClick={()=>handleDelete(index)}>Delete</button>
+            <input type='checkbox' checked = {check} onChange={handleCheck}></input></li>
           }))
         }
         
